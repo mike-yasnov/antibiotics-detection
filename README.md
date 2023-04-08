@@ -89,7 +89,7 @@ To run GUI
 python -m app
 ```
 
-
+To check the project you can try files from folder *test_data*
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@mike-yasnov](https://github.com/mike-yasnov) - Idea & Initial work
