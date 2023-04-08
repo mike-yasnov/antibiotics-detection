@@ -1,0 +1,2 @@
+
+color_pen = 'rgbcmykwrgbcmykwrgbcmykwrgbcmykwrgbcmykw'
