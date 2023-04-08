@@ -19,9 +19,9 @@ Qualitative and non-quantitative determination of antibiotics in powdered milk u
 - [Data](#data)
 - [Models](#models)
 - [Results](#results)
+- [Сonclusions](#conclusions)
 - [Usage](#usage)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ---
 
@@ -46,7 +46,7 @@ Tabular data obtained using voltammetry. Data consists of 1044 coumns and 958 ro
 ![CNN Architecture](https://github.com/mike-yasnov/antibiotics-detection/blob/main/imgs/CNN-architecture.png?raw=true)
 
 
-## 🏁Results <a name = "results"></a>
+## 🏁 Results <a name = "results"></a>
 ### Classifiaction
 | Metrics    | CatBoost      | XGBoost    | CNN      |
 | ---------- | ------------- | ---------- | -------- |
@@ -59,19 +59,40 @@ Tabular data obtained using voltammetry. Data consists of 1044 coumns and 958 ro
 
 ### Regression
 
-## 🎈 Usage <a name="usage"></a>
+| Metrics    | Linear Regression      | CatBoost    | XGBoost    | LAMA       |
+| ---------- | ---------------------- | ----------- | ---------- | --------   |
+| R2 score   | 0.9275                 | -0.0048     | -3.4942    | 0.0655     |
+| MSE        | 2.29e-13               | 3.1886e-12  | 1.1149e-05 | 2.9652e-12 |
+| MAE        | 3.56e-07               | 7.5134e-07  | 0.0033     | 7.1768e-07 |
 
-Add notes about how to use the system.
+
+## ⭐ Сonclusions <a name = "сonclusions"></a>
+
+- Two ML models were trained.
+- The model for classification at the moment is SoTA (State of The Art) on this dataset.
+
+- A GUI was created for the convenience of using the models.
+
+
+## 🎈 Usage <a name="usage"></a>
+Create anaconda environment
+
+```
+git clone https://github.com/mike-yasnov/antibiotics-detection.git
+cd antibiotics-detection
+conda env create -f environment.yml
+conda activate milk
+```
+
+To run GUI
+```
+python -m app
+```
 
 
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@mike-yasnov](https://github.com/mike-yasnov) - Idea & Initial work
 
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/mike-yasnov/antibiotics-detection/contributors) who participated in this project.
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
