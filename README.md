@@ -27,7 +27,9 @@ Qualitative and non-quantitative determination of antibiotics in powdered milk u
 
 ## 📊 Data <a name = "data"></a>
 
-Tabular data obtained using voltammetry. Data consists of 1044 coumns and 958 rows. We use it to get an approximate result of our model
+Tabular data obtained using voltammetry. Data consists of 1044 coumns and 958 rows. We use it to get an approximate result of our model.
+The example of Cyclic voltammogram (СVA):
+![CVA](https://github.com/mike-yasnov/antibiotics-detection/blob/main/imgs/CVA-example.png?raw=true)
 
 ## 🧨 Models <a name = "models"></a>
 
