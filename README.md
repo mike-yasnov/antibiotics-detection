@@ -1,5 +1,5 @@
 <h2 align="center">
-Qualitative and non-quantitative determination of antibiotics in powdered milk using machine learning methods</h3>
+Qualitative and non-quantitative determination of antibiotics in powdered milk using machine learning methods
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
