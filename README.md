@@ -97,4 +97,3 @@ To check the project you can try files from folder *test_data*
 - [@mike-yasnov](https://github.com/mike-yasnov) - Idea & Initial work
 
 See also the list of [contributors](https://github.com/mike-yasnov/antibiotics-detection/contributors) who participated in this project.
-
