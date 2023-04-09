@@ -77,18 +77,23 @@ The example of Cyclic voltammogram (СVA):
 
 
 ## 🎈 Usage <a name="usage"></a>
-Create anaconda environment
+Create virtual environments
+```
+python3 -m venv venv
+. venv/bin/activate
+```
+
+Install packages
 
 ```
 git clone https://github.com/mike-yasnov/antibiotics-detection.git
 cd antibiotics-detection
-conda env create -f environment.yml
-conda activate milk
+make install
 ```
 
 To run GUI
 ```
-python -m app
+make run_app
 ```
 
 To check the project you can try files from folder *test_data*
