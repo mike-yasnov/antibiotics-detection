@@ -82,23 +82,27 @@ Create virtual environments
 python3 -m venv venv
 . venv/bin/activate
 ```
-
-Install packages
-
+To start working:
 ```
 git clone https://github.com/mike-yasnov/antibiotics-detection.git
 cd antibiotics-detection
-make install
 ```
+To install packages:
+- `make install`
 
 To run GUI
-```
-make run_app
-```
+- `make run` 
+
+Additional:
+- `make lint` - run linters
+
+
 
 To check the project you can try files from folder *test_data*
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@mike-yasnov](https://github.com/mike-yasnov) - Idea & Initial work
+- [@mike-yasnov](https://github.com/mike-yasnov) - Machine Learning Engineers
+- [@ShockOfWave](https://github.com/ShockOfWave) - Chemical genius and  my scientific advisor
+
 
 See also the list of [contributors](https://github.com/mike-yasnov/antibiotics-detection/contributors) who participated in this project.
