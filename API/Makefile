@@ -1,5 +1,6 @@
 APP_PORT := 5000
 DOCKER_TAG := latest
+DOCKER_IMAGE := mikeyasunov/antibiotics
 
 .PHONY: run_app
 run_app:
@@ -9,7 +10,6 @@ run_app:
 install:
 	pip install -r requirements.txt
 
-.PHONY: download_weights
-download_weights:
-	wget -O weights/genre_classifier.pt https://www.dropbox.com/s/xlax7mfwmzh4rjl/genre_classifier.pt?dl=0
-	wget -O weights/rotate_classifier.pt https://www.dropbox.com/s/976wwhi1531hmcg/rotate_classifier.pt?dl=0
+.PHONY: build
+build:
+	docker build -f Dockerfile . --force-rm=true -t $(DOCKER_IMAGE):$(DOCKER_TAG)
