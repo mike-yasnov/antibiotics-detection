@@ -6,7 +6,6 @@ import pickle
 
 
 class DataRegressor:
-
     def __init__(self, config: Dict):
         self._model = pickle.load(open(config['model_path'], 'rb'))
 
