@@ -162,25 +162,31 @@ class GUI(QMainWindow):
         df = np.array(pd.read_csv(self.fname, index_col=0).T.iloc[1])
         if df.shape == (1040,):
             file = {'file': open(self.fname, 'rb')}
-            prediction = requests.post(url='http://localhost:5000/antibiotics/predict', files=file).json()
-            antibiotic, conc = prediction['antibiotic'], prediction['concentration']
-            self.table_data.loc[len(self.table_data.index)] = [self.fname,
-                                                                antibiotic,
-                                                                conc]
+            prediction = requests.post(
+                url='http://localhost:5000/antibiotics/predict',
+                files=file
+                ).json()
+            antibiotic = prediction['antibiotic']
+            conc = prediction['concentration']
+            self.table_data.loc[len(self.table_data.index)] = [
+                self.fname,
+                antibiotic,
+                conc
+                ]
             self.tableView.model().layoutChanged.emit()
             self.tableView.resizeColumnsToContents()
             if antibiotic == 'milk':
                 QMessageBox.about(self,
-                                    'Prediction',
-                                    'Predicted pure milk'
-                                    )
+                                  'Prediction',
+                                  'Predicted pure milk'
+                                  )
             else:
                 prediction = f'Predicted: {antibiotic}\n' + \
                             f'Concentration: {conc} mg/l'
                 QMessageBox.about(self,
-                                    'Prediction',
-                                    prediction
-                                    )
+                                  'Prediction',
+                                  prediction
+                                  )
         else:
             QMessageBox.warning(self, 'Error', 'Data has wrong length')
 
