@@ -83,9 +83,9 @@ In this GitHub repository ypu can see two main folders:
 * API
 * APP
 
-**API** - This folder contains an API of this project. API was hosted on server.
+**API** - This folder contains an API of this project. API was hosted on server. It was developed with FasrAPI.
 
-**APP** - This is a main folder of this project. There is a GUI
+**APP** - This is a main folder of this project. There you can find a code of User Interface of this project. It uses post/get requests to connect with API.
 
 ## 🎈 Usage <a name="usage"></a>
 Create virtual environments
