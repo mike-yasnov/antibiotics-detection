@@ -1,20 +1,20 @@
+import torch
 from torch import nn
 import pytorch_lightning as pl
 
 
 class ClfModelTabCNN(pl.LightningModule):
-
     def __init__(self,
-                 input_dim,
-                 output_dim,
-                 sign_size=64,
-                 cha_input=32,
-                 cha_hidden=512,
-                 K=5,
-                 dropout_input=0.2,
-                 dropout_hidden=0.2,
-                 dropout_output=0.2
-                 ):
+                 input_dim: int,
+                 output_dim: int,
+                 sign_size: int=64,
+                 cha_input: int=32,
+                 cha_hidden: int=512,
+                 K: int=5,
+                 dropout_input: float=0.2,
+                 dropout_hidden: float=0.2,
+                 dropout_output: float=0.2
+                 ) -> None:
         super().__init__()
 
         hidden_size = sign_size * cha_input
@@ -99,7 +99,9 @@ class ClfModelTabCNN(pl.LightningModule):
 
         self.loss = nn.MSELoss()
 
-    def forward(self, x):
+    def forward(self, 
+                x: torch.tensor
+                ) -> torch.tensor:
         x = self.batch_norm1(x)
         x = self.dropout1(x)
         x = nn.functional.celu(self.dense1(x))

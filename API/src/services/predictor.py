@@ -17,3 +17,4 @@ class Predictor:
         else:
             quantity = 0.0
         return [antibiotic, quantity]
+    

@@ -159,7 +159,8 @@ class GUI(QMainWindow):
 
     def predict_antibiotics(self):
         # Read data
-        df = np.array(pd.read_csv(self.fname, index_col=0).T.iloc[1])
+        df = np.array(Ivium(self.fname).data.T.iloc[1])
+        print(df)
         if df.shape == (1040,):
             file = {'file': open(self.fname, 'rb')}
             prediction = requests.post(
