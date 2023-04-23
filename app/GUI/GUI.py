@@ -164,7 +164,7 @@ class GUI(QMainWindow):
         if df.shape == (1040,):
             file = {'file': open(self.fname, 'rb')}
             prediction = requests.post(
-                url='http://51.250.51.235:5000/antibiotics/predict',
+                url='http://84.201.184.63:5000/antibiotics/predict',
                 files=file
                 ).json()
             antibiotic = prediction['antibiotic']
