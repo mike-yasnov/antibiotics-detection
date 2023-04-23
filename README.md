@@ -20,6 +20,7 @@ Qualitative and non-quantitative determination of antibiotics in powdered milk u
 - [Models](#models)
 - [Results](#results)
 - [Сonclusions](#conclusions)
+- [Components](#components)
 - [Usage](#usage)
 - [Authors](#authors)
 
@@ -75,6 +76,16 @@ The example of Cyclic voltammogram (СVA):
 
 - A GUI was created for the convenience of using the models.
 
+
+
+## 🧮 Components <a name = "components"></a>
+In this GitHub repository ypu can see two main folders:
+* API
+* APP
+
+**API** - This folder contains an API of this project. API was hosted on server.
+
+**APP** - This is a main folder of this project. There is a GUI
 
 ## 🎈 Usage <a name="usage"></a>
 Create virtual environments
