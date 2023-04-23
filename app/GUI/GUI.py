@@ -2,16 +2,19 @@ import os
 import sys
 import numpy as np
 import pandas as pd
+import requests
+
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PyQt5.uic import loadUi
 import pyqtgraph as pg
+
 from app.paths.paths import PATH_TO_UI_FILE
 from app.data.data import Ivium
 from app.plots.plots import PlotGraph
 from app.plots.utils import color_pen
-from app.pipeline.pipeline import Pipeline
+
 
 pg.setConfigOption('background', 'w')
 pg.setConfigOption('foreground', 'k')
@@ -154,67 +157,37 @@ class GUI(QMainWindow):
             self.widget.setTitle('Cyclic Voltammetry')
             self.current = np.array(self.data[self.data.columns[1]])
 
-    def get_models(self, ):
-        # Get classification model
-        if self.CNNnetwork.isChecked():
-            self.clf = 'CNN'
-        elif self.CatBoost.isChecked():
-            self.clf = 'Cat'
-        elif self.Lama.isChecked():
-            self.clf = 'Lama'
-        else:
-            self.clf = None
-        # Get regression model
-        if self.CatBoost_2.isChecked():
-            self.reg = 'Cat'
-        elif self.Lama_2.isChecked():
-            self.reg = 'Lama'
-        elif self.Fedot_2.isChecked():
-            self.reg = 'Fedot'
-        else:
-            self.reg = None
-
     def predict_antibiotics(self):
         # Read data
-        self.get_models()
-        df = np.array(pd.read_csv(self.fname, index_col=0).T.iloc[1])
+        df = np.array(Ivium(self.fname).data.T.iloc[1])
+        print(df)
         if df.shape == (1040,):
-
-            # Make pipeline
-            if self.reg is not None and self.clf is not None:
-                start_pipeline = Pipeline(
-                    data=df,
-                    claffifier_type=self.clf,
-                    regressor_type=self.reg
-                    )
-                antibiotic = start_pipeline.get_classification()
-                if antibiotic != 'milk':
-                    conc = abs(round(start_pipeline.get_regression()[0], 10))
-                else:
-                    conc = 0
-
-                self.table_data.loc[len(self.table_data.index)] = [self.fname,
-                                                                   antibiotic,
-                                                                   conc]
-                self.tableView.model().layoutChanged.emit()
-                self.tableView.resizeColumnsToContents()
-                if antibiotic == 'milk':
-                    QMessageBox.about(self,
-                                      'Prediction',
-                                      'Predicted pure milk'
-                                      )
-                else:
-                    prediction = f'Predicted: {antibiotic}\n' + \
-                                f'Concentration: {conc} mg/l'
-                    QMessageBox.about(self,
-                                      'Prediction',
-                                      prediction
-                                      )
+            file = {'file': open(self.fname, 'rb')}
+            prediction = requests.post(
+                url='http://84.201.184.63:5000/antibiotics/predict',
+                files=file
+                ).json()
+            antibiotic = prediction['antibiotic']
+            conc = prediction['concentration']
+            self.table_data.loc[len(self.table_data.index)] = [
+                self.fname,
+                antibiotic,
+                conc
+                ]
+            self.tableView.model().layoutChanged.emit()
+            self.tableView.resizeColumnsToContents()
+            if antibiotic == 'milk':
+                QMessageBox.about(self,
+                                  'Prediction',
+                                  'Predicted pure milk'
+                                  )
             else:
-                QMessageBox.warning(self,
-                                    'Warning',
-                                    'Choose models before prediction!'
-                                    )
+                prediction = f'Predicted: {antibiotic}\n' + \
+                            f'Concentration: {conc} mg/l'
+                QMessageBox.about(self,
+                                  'Prediction',
+                                  prediction
+                                  )
         else:
             QMessageBox.warning(self, 'Error', 'Data has wrong length')
 

@@ -1,0 +1,9 @@
+services:
+  data_analytics:
+    cold_run: true
+  data_classifier:
+    model_path: 'weights/cnn_ivium.ckpt'
+    label_encoder: 'weights/le.pkl'
+    device: ${oc.env:CLASSIFIER_DEVICE,'cpu'}
+  data_regressor:
+    model_path: 'weights/linreg.pkl'
